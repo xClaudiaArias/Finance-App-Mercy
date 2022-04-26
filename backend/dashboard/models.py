@@ -16,6 +16,11 @@ class User(models.Model):
     password = models.CharField(max_length=15)
     created_at = timezone.now()
     
+    
+    # testing 
+    def populateIndex():
+        return 'Populate Index'
+    
 class Bills(models.Model):
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     category = models.CharField(max_length=30, default="category")
