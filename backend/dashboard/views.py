@@ -17,5 +17,11 @@ def index(request):
     
     return render(request, "dashboard/index.html", context)
 
+def printname(request):
+    if request.method == 'POST':
+        current_name = request.POST.get('your_name')
+        context = {"current_name" : current_name}
+        return render(request, "dashboard/index.html", context)
+
 
     
