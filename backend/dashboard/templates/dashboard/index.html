@@ -29,6 +29,16 @@
       <input type="submit" value="OK" />
     </form>
 
+    <form action="/dashboard/" method="POST">
+      {% csrf_token %} {{form}}
+      <input type="submit" value="Submit" />
+    </form>
+
+    <form action="/dashboard/form3/" method="post">
+      {% csrf_token %} {{form3}}
+      <input type="submit" value="Submit" />
+    </form>
+
     {{current_name}}
   </body>
 </html>
