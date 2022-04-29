@@ -8,16 +8,16 @@
   </head>
   <body>
     <h1>User Information</h1>
+
     <p>Id: {{id}}</p>
     <p>First Name: {{first_name}}</p>
     <p>Last Name: {{last_name}}</p>
     <p>Username: {{username}}</p>
     <p>email: {{email}}</p>
-
-    <p>populate method: {{populate}}</p>
+    <p>User: {{current_name}}</p>
 
     <h1>Form Example:</h1>
-    <form action="/dashboard/your-name/" method="post">
+    <!-- <form action="/dashboard/your-name/" method="post">
       {% csrf_token %}
       <label for="your_name">Your name: </label>
       <input
@@ -27,9 +27,9 @@
         value="{{ current_name }}"
       />
       <input type="submit" value="OK" />
-    </form>
+    </form> -->
 
-    <form action="/dashboard/" method="POST">
+    <!-- <form action="/dashboard/" method="POST">
       {% csrf_token %} {{form}}
       <input type="submit" value="Submit" />
     </form>
@@ -37,8 +37,9 @@
     <form action="/dashboard/form3/" method="post">
       {% csrf_token %} {{form3}}
       <input type="submit" value="Submit" />
-    </form>
+    </form> -->
 
-    {{current_name}}
+    <p>{{current_user}}</p>
+    <!-- {{current_name}} -->
   </body>
 </html>
