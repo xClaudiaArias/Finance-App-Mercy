@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from dashboard.models import User
+from dashboard.models import Users
 
 class UserForm(ModelForm):
   class Meta:
-    model = User
+    model = Users
     fields = ["username", "password"]
     
 form3 = UserForm()

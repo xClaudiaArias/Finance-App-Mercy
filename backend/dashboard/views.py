@@ -6,6 +6,7 @@ from dashboard.models import Users
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from dashboard.loginform import UserForm
+from django.contrib.auth.backends import BaseBackend
 
 # from dashboard.forms import NameForm
 # from dashboard.formmodeltest import UserForm
@@ -15,18 +16,37 @@ from dashboard.loginform import UserForm
 def index(request):
     # user_id = User.objects.get(pk=user_id)
     
-    id_ = Users.objects.values_list()[0][0]
-    first_name = Users.objects.values_list()[0][1]
-    last_name = Users.objects.values_list()[0][2]
-    username = Users.objects.values_list()[0][3]
-    email = Users.objects.values_list()[0][4]
-    password = Users.objects.values_list()[0][5]
+    # id_ = Users.objects.values_list()[0][0]
+    # first_name = Users.objects.values_list()[0][1]
+    # last_name = Users.objects.values_list()[0][2]
+    # username = Users.objects.values_list()[0][3]
+    # email = Users.objects.values_list()[0][4]
+    # password = Users.objects.values_list()[0][5]
     
-    # populate = Users.populateIndex()
+    # # populate = Users.populateIndex()
 
-    current_name = request.POST.get('username')
-    context = {"id": id_, "first_name": first_name, "last_name": last_name, "username": username, "email": email, "current_name": current_name}
-    return render(request, "dashboard/index.html", context)
+    # current_name = request.POST.get('username')
+    # context = {"id": id_, "first_name": first_name, "last_name": last_name, "username": username, "email": email, "current_name": current_name}
+    # return render(request, "dashboard/index.html", context)
+    
+
+
+
+
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    # username = request.POST['username']
+    # password = request.POST['password']
+    user = Users.objects.get(username=username, password=password)
+    # user2 = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user, backend='django.template.backends.django.DjangoTemplates')
+        context = {'user': username}
+        return HttpResponse('welcome, ' + username)
+        # return render(request,'dashboard/index.html', context)
+    else:
+        return HttpResponse('try again')
+    
 
 
 
@@ -36,14 +56,25 @@ def loginForm(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            return HttpResponse('<p>BLUUUUUU</p>')
+            return HttpResponse('<p>Welcome</p>' + ' ' + '<p>' + username + '</p>')
+        else:
+            return HttpResponse('try again')
     else:
         form = UserForm()
 
     return render(request, "registration/login.html", {'form': form})
     
 
-
+def authUser(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        context = {'user': username}
+        return render(request, "registration/login.html", context)
+    else:
+        return HttpResponse('try again')
 
 
 

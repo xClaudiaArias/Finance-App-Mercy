@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('dashboard.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('accounts/login/', include('django.contrib.auth.urls'))
+    path("", include('dashboard.urls'))
+    # path('login', include("django.contrib.auth.urls"))
     # path('your-name/', include('dashboard.urls')),
     # path('form2/', include('dashboard.urls')),
     # path('form3/', include('dashboard.urls'))
