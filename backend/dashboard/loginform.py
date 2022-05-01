@@ -6,8 +6,5 @@ class UserForm(ModelForm):
     model = Users
     fields = ["username", "password"]
     
-form3 = UserForm()
+form = UserForm()
 
-# if form3.is_valid():
-#   newUser = form3.save()
-  

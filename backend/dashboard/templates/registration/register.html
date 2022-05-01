@@ -16,12 +16,12 @@
   {% block Title %} <h1>Sign Up </h1>{% endblock %}
 
   {% block Content %}
-  <form action="/login/" method="POST">
+  <form action="." method="POST">
     {% csrf_token %}
     {{ register_form|crispy }}
 
     <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
-    <input type="Submit" class="btn btn-primary" name="submit" value="submit">
+    <button type="Submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
   </form>
   {% endblock %}
 

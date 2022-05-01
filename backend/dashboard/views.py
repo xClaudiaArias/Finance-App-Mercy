@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from dashboard.models import Users
 from dashboard import loginform
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from dashboard.loginform import UserForm
 from django.contrib.auth.backends import BaseBackend
@@ -23,12 +24,15 @@ def register(request):
     if request.method == 'POST':
         register_form = RegisterUser(request.POST)
         if register_form.is_valid():
-            # return HttpResponse('<p>success</p>')
-            return HttpResponseRedirect('registration/register.html')
-        else:
-            return HttpResponse('try again')
+            register_form.save()
+            register_form.save(commit=False)
+            password = register_form.cleaned_data.get('password1')
+            new_user = Users(first_name = request.POST.get('first_name'), last_name = request.POST.get('last_name'), username = request.POST.get('username'), email = request.POST.get('email'), password = password)
+            new_user.save()
+            return HttpResponse('<p>Good Job</p>')
+
     else:
-        register_form = RegisterUser()        
+        register_form = RegisterUser()      
     
     return render(request, "registration/register.html", {'register_form': register_form})
 

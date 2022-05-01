@@ -54,6 +54,8 @@
     {% else %} 
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Log In</a>
+
+    <p>Don't have an account? <a href="{% url 'dashboard:register' %}">register here</a></p> 
     {% endif %} 
     {% endblock %} 
 
