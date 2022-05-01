@@ -20,11 +20,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dashboard/', include('dashboard.urls')),
-    path("accounts/", include("django.contrib.auth.urls")),
-    path("", include('dashboard.urls'))
-    # path('login', include("django.contrib.auth.urls"))
+    path('accounts/', include("django.contrib.auth.urls")),
+    path('', include("dashboard.urls")),
+    # path('', include('dashboard.urls')),
     # path('your-name/', include('dashboard.urls')),
     # path('form2/', include('dashboard.urls')),
     # path('form3/', include('dashboard.urls'))
 ]
+
+    # <!-- <p>Don't have an account? <a href="{% url 'register' %}">register here</a></p> -->
