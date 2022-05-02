@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from dashboard.models import Users
 from dashboard import loginform
@@ -8,16 +8,14 @@ from django.contrib.auth import authenticate, login
 from dashboard.loginform import UserForm
 from django.contrib.auth.backends import BaseBackend
 from dashboard.register import RegisterUser
-
-# from dashboard.forms import NameForm
-# from dashboard.formmodeltest import UserForm
-
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+
 def index(request):
     current_name = request.POST.get('username')
     context = {"name": current_name}
-    return HttpResponse("<p>Hello</p>")
+    return render(request, "dashboard/index.html", context)
     
 
 def register(request):
@@ -25,30 +23,24 @@ def register(request):
         register_form = RegisterUser(request.POST)
         if register_form.is_valid():
             register_form.save()
-            register_form.save(commit=False)
             password = register_form.cleaned_data.get('password1')
             new_user = Users(first_name = request.POST.get('first_name'), last_name = request.POST.get('last_name'), username = request.POST.get('username'), email = request.POST.get('email'), password = password)
             new_user.save()
-            return HttpResponse('<p>Good Job</p>')
-
+            # return HttpResponse('<p>Good Job</p>')
+            return redirect('/login/')
     else:
         register_form = RegisterUser()      
     
     return render(request, "registration/register.html", {'register_form': register_form})
 
+@csrf_exempt
 def login(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    # username = request.POST['username']
-    # password = request.POST['password']
-    user = Users.objects.get(username=username, password=password)
-    # user2 = authenticate(request, username=username, password=password)
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user, backend='django.template.backends.django.DjangoTemplates')
-        context = {'user': username}
-        return HttpResponse('welcome, ' + username)
-        # return HttpResponseRedirect("dashboard/index")
-        # return render(request,'dashboard/index.html', context)
+        return redirect('/accounts/profile/')
     else:
         return HttpResponse('try again')
 
@@ -67,7 +59,11 @@ def loginForm(request):
     return render(request, "registration/login.html", {'form': form})
     
 
-
+def profile(request):
+    current_name = request.POST.get("username")
+    user_name = request.user
+    context = {"name": current_name, 'user_name': user_name}
+    return render(request, "dashboard/profile.html", context)
 
 # examples 👇
 

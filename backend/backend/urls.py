@@ -16,16 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# import dashboard
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
+    path('profile/', include("django.contrib.auth.urls")),
     path('', include("dashboard.urls")),
-    # path('', include('dashboard.urls')),
-    # path('your-name/', include('dashboard.urls')),
-    # path('form2/', include('dashboard.urls')),
-    # path('form3/', include('dashboard.urls'))
 ]
 
-    # <!-- <p>Don't have an account? <a href="{% url 'register' %}">register here</a></p> -->

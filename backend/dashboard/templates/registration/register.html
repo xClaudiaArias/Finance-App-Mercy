@@ -16,7 +16,7 @@
   {% block Title %} <h1>Sign Up </h1>{% endblock %}
 
   {% block Content %}
-  <form action="." method="POST">
+  <form method="POST">
     {% csrf_token %}
     {{ register_form|crispy }}
 
