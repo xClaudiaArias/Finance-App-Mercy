@@ -136,3 +136,14 @@ body {
 .cir-goal {
   background-color: #00727b ;
 }
+
+/* add buttons  */
+.add-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+  background-color: #44A1A0;
+  font-size: 16px;
+  color: white;
+}
