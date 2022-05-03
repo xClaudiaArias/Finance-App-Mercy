@@ -1,0 +1,66 @@
+#main {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  height: fit-content;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas: "in-bal overview bills"
+                      "budget goals expenses";
+  row-gap: 0;
+  column-gap: 0;
+}
+
+#overview {
+  width: 600px;
+  height: 400px;
+  background-color: yellow;
+  grid-area: overview;
+}
+
+#in-bal {
+  width: 380px;
+  height: 400px;
+  grid-area: in-bal;
+}
+
+#balance {
+  width: 380px;
+  height: 200px;
+  background-color: #7B8FFF;
+}
+
+#income {
+  width: 380px;
+  height: 200px;
+  background-color: #FF8EFF;
+}
+
+#budget {
+  width: 380px;
+  height: 300px;
+  background-color: #FF9A34;
+  grid-area: budget;
+}
+
+#bills {
+  width: 517px;
+  height: 400px;
+  background-color: #FF5D5D;
+  grid-area: bills;
+}
+
+#goals {
+  width: 600px;
+  height: 300px;
+  background-color: #B37BFF;
+  grid-area: goals;
+}
+
+#expenses {
+  width: 600px;
+  height: 300px;
+  background-color: #4FEDCF;
+  grid-area: expenses;
+}
+
