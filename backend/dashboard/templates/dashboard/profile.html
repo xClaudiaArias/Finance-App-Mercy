@@ -10,15 +10,92 @@
   {% if user.is_authenticated %} 
 
     <main id="main">
+
       <div id="in-bal">
-        <section id="balance">balance</section>
-        <section id="income">income</section>
+        <section id="balance">
+          <h2>Balance</h2>
+          <div id="balance-data">
+            <p id="current-balance">$ { 0.00 }</p>
+          </div>
+        </section>
+        <section id="income">
+          <h2>Income</h2>
+          <div id="income-data">
+            <h6 id="income-source">{ Starbucks Barista }</h6>
+            <p id="income-money">{ $ 1234.00 }</p>
+
+            <p id="income-date">{ 5 / 2 / 2022 } </p>
+            <div id="income-btns">
+              <div id="income-edit">{ edit }</div>
+              <div id="income-trash">{ trash }</div>
+            </div>
+          </div>
+        </section>
       </div>
-      <section id="overview">overview</section>
-      <section id="bills">bills</section>
-      <section id="budget">budget</section>
-      <section id="goals">goals</section>
-      <section id="expenses">expenses</section>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <div id="graph"></div>
+        <div id="overview-keys">
+          <div class="keys" id="income-key">
+            <div class="overview-circles cir-inc"></div>
+            <p class="key-label">Income</p>
+          </div>
+          <div class="keys" id="balance-key">
+            <div class="overview-circles cir-bal"></div>
+            <p class="key-label">Balance</p>
+          </div>
+          <div class="keys" id="expenses-key">
+            <div class="overview-circles cir-exp"></div>
+            <p class="key-label">Expenses</p>
+          </div>
+          <div class="keys" id="bills-key">
+            <div class="overview-circles cir-bill"></div>
+            <p class="key-label">Bills</p>
+          </div>
+          <div class="keys" id="budget-key">
+            <div class="overview-circles cir-bud"></div>
+            <p class="key-label">Budget</p>
+          </div>
+          <div class="keys" id="goals-key">
+            <div class="overview-circles cir-goal"></div>
+            <p class="key-label">Goals</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="bills">
+        <h2>Bills</h2>
+        <div class="bill-container">
+          { bill cards will be here }
+        </div>
+      </section>
+
+      <section id="budget">
+        <h2>Budget</h2>
+        { budget cards will be here}
+      </section>
+
+      <section id="goals">
+        <h2>Goals</h2>
+        <div id="goals-container">
+          { goals cards will be here}
+        </div>
+        <p>Add new goals</p>
+        <div id="goal-choices">
+          <div class="goal">1</div>
+          <div class="goal">2</div>
+          <div class="goal">3</div>
+          <div class="goal">4</div>
+        </div>
+
+      </section>
+
+      <section id="expenses">
+        <h2>Expenses</h2>
+        { Expenses cards will be here}
+      </section>
+
     </main>
 
   {% else %} 

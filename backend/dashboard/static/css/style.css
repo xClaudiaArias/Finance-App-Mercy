@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #FBFBFB;
+}
+
 #main {
   width: 100vw;
   height: 100vh;
@@ -20,7 +24,6 @@
 #overview {
   width: 600px;
   height: 400px;
-  background-color: yellow;
   grid-area: overview;
 }
 
@@ -70,3 +73,66 @@
   grid-area: expenses;
 }
 
+
+/* overview  */
+
+#overview h2 {
+  margin-left: 26px;
+}
+
+#graph {
+  margin: 0 auto;
+  width: 540px;
+  height: 260px;
+  background-color: white;
+  border: grey 1px dashed;
+}
+
+#overview-keys {
+  margin: 0 auto;
+  width: 540px;
+  height: 60px;
+  background-color: white;
+  box-shadow: 2px 1px 4px rgb(214, 214, 214);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-radius: 8px;
+}
+.keys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overview-circles {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  margin-top: -14px;
+  margin-right: 5px;
+}
+
+.cir-inc {
+  background-color: #008ce2;
+}
+
+.cir-bal {
+  background-color: #00b493;
+}
+
+.cir-exp {
+  background-color: #FF5D5D;
+}
+
+.cir-bill {
+  background-color: #ff970f ;
+}
+.cir-bud {
+  background-color: #B37BFF;
+}
+
+.cir-goal {
+  background-color: #00727b ;
+}
