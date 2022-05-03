@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     current_name = request.POST.get('username')
     context = {"name": current_name}
-    return render(request, "dashboard/index.html", context)
+    return render(request, "dashboard/base.html", context)
     
 
 def register(request):

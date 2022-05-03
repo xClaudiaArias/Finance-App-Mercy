@@ -1,13 +1,17 @@
-{% extends 'dashboard/index.html' %}
-{% block title %} <h1>Dashboard</h1> {% endblock %} 
-{% block content %} 
-{% if user.is_authenticated %} 
-  <p> Welcome, {{user_name}}!</p> 
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %} 
-<p>You are not logged in</p>
-<a href="{% url 'login' %}">Log In</a>
+{% extends 'dashboard/base.html' %}
+{% load static %}
 
-<p>Don't have an account? <a href="{% url 'dashboard:register' %}">register here</a></p> 
-{% endif %} 
+{% block title %}Profile{% endblock %}
+
+{% block content %} 
+  <h1>Profile</h1>
+  {% if user.is_authenticated %} 
+    <p> Welcome, {{user_name}}!</p> 
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {% else %} 
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+
+  <p>Don't have an account? <a href="{% url 'dashboard:register' %}">register here</a></p> 
+  {% endif %} 
 {% endblock %} 
