@@ -147,3 +147,12 @@ body {
   font-size: 16px;
   color: white;
 }
+
+#income-modal {
+  /* display: none; */
+  background-color: white;
+}
+
+.modal-container {
+  background-color: white;
+}

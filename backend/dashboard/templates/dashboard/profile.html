@@ -6,9 +6,26 @@
   <link rel="stylesheet" href="{%  static  'css/style.css'  %}"/>
 {% endblock %}
 
+{% block modal %}
+  <div class="modal" id="income-modal">
+    <div class="modal-container">
+      <h1>Add new income</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{add_income_form.as_p}}
+        <!-- <input type="text" placeholder="work">
+        <input type="text" placeholder="pls"> -->
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
 {% block content %} 
   {% if user.is_authenticated %} 
 
+  <p>This is the current user_name: {{c_id}}</p>
+  <h1 id="test">TEST</h1>
     <main id="main">
 
       <div id="in-bal">
@@ -20,12 +37,22 @@
         </section>
         <section id="income">
           <h2>Income</h2>
-          <form method="POST">
-            <button class="add-btn" id="add-income" type="submit">+</button>
-          </form>
+          <button class="add-btn" id="add-income" type="submit">+</button>
+          <!-- ------ MODAL ------ -->
+          <!-- <div class="modal" id="income-modal">
+            <div class="modal-container">
+              <h1>Add new income</h1>
+              <form method="post">
+                {% csrf_token %}
+                {{add_income_form}}
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div> -->
+          <!-- ------------------- -->
           <div id="income-data">
-            <h6 id="income-source">{ Starbucks Barista }</h6>
-            <p id="income-money">{ $ 1234.00 }</p>
+            <h6 id="income-source">{{income_name}}</h6>
+            <p id="income-money">{{deposit}}</p>
 
             <p id="income-date">{ 5 / 2 / 2022 } </p>
             <div id="income-btns">

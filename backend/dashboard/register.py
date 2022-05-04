@@ -9,7 +9,6 @@ class RegisterUser(UserCreationForm):
 
   class Meta:
     db_table = 'dashboard_users'
-    # model = Users
     model = User
     fields = ("first_name", "last_name", "username", "email")
 

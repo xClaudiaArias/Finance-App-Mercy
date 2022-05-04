@@ -52,10 +52,10 @@ class Budget(models.Model):
 
 
 class Income(models.Model):
-    user = models.ForeignKey(Users, default=1, on_delete=models.CASCADE)
-    income_name = models.CharField(max_length=20, default="income_name")
+    current_user = models.ForeignKey(Users, default=2, on_delete=models.CASCADE)
+    income_name = models.CharField(max_length=20, blank=True)
     created_at = timezone.now()
-    deposit = models.DecimalField(default=0, max_digits=10, decimal_places=2)
+    deposit = models.DecimalField(blank=True, max_digits=10, decimal_places=2)
     updated_at = models.DateTimeField('updated_at', auto_now=True)
 
 class Balance(models.Model):
@@ -81,3 +81,7 @@ class Goals(models.Model):
     amount_to_save = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     amount_saved = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     updated_at = timezone.now()
+    
+    
+    
+    

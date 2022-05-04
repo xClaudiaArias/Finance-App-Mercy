@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from dashboard.models import Users
+from dashboard.models import Users, Income
 from dashboard import loginform
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from dashboard.loginform import UserForm
+from dashboard.incomeform import AddIncome
 from django.contrib.auth.backends import BaseBackend
 from dashboard.register import RegisterUser
 from django.views.decorators.csrf import csrf_exempt
@@ -59,14 +60,43 @@ def loginForm(request):
     return render(request, "registration/login.html", {'form': form})
     
 
-def profile(request):
-    current_name = request.POST.get("username")
-    user_name = request.user
-    context = {"name": current_name, 'user_name': user_name}
-    return render(request, "dashboard/profile.html", context)
+# def addIncomeForm(request):
+#     if request.method == 'POST':
+#         add_income_form = AddIncome(request.POST)
+#         if add_income_form.is_valid():
+#             add_income_form.save()
+#             # new_income = Users(income_name = request.POST.get('income_name'), deposit = request.POST.get('deposit'))
+#             # new_income.save()
+#             return HttpResponse('<p>Good Job</p>')
+#     else:
+#         add_income_form = AddIncome()      
+    
+#     return render(request, "dashboard/profile.html", {'add_income_form': add_income_form})
+    
+
 
 # examples 👇
 
+def profile(request):
+    current_name = request.POST.get("username")
+    user_name = request.user
+    c_id = request.user.id
+    # -- INCOME modal 
+    if request.method == 'POST':
+        add_income_form = AddIncome(request.POST)
+        if add_income_form.is_valid():
+            user_id = request.user.id
+            new_income = Income(income_name = request.POST.get('income_name'), deposit = request.POST.get('deposit'), current_user_id = user_id)
+            new_income.save()
+            return redirect('/accounts/profile/')
+        
+    else:
+        add_income_form = AddIncome()      
+            
+    
+    context = {"name": current_name, 'user_name': user_name, 'add_income_form': add_income_form, "c_id":c_id}
+    
+    return render(request, "dashboard/profile.html", context)
 
 
 # def printname(request):
