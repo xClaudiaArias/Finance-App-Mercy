@@ -148,10 +148,12 @@ body {
   color: white;
 }
 
-#income-modal {
+#income-modal, #bill-modal {
   /* display: none; */
   background-color: white;
 }
+
+
 
 .modal-container {
   background-color: white;

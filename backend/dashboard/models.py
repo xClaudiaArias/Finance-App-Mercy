@@ -25,13 +25,13 @@ class Users(models.Model):
         return 'Populate Index'
     
 class Bills(models.Model):
-    user = models.ForeignKey(Users, default=1, on_delete=models.CASCADE)
-    category = models.CharField(max_length=30, default="category")
-    bill_name = models.CharField(max_length=30, default="bill name")
+    user = models.ForeignKey(Users, default=2, on_delete=models.CASCADE)
+    category = models.CharField(max_length=30, blank=True)
+    bill_name = models.CharField(max_length=30, blank=True)
     amount_due = models.DecimalField(default=0, max_digits=10, decimal_places=2)
-    due_date = forms.DateField()
+    due_date = forms.DateField(input_formats='%m/%d/%Y')
     isPaid = models.BooleanField(default=False)
-    pay_date = forms.DateField()
+    pay_date = forms.DateField(input_formats='%m/%d/%Y')
     
     
 # probably will have to delete bills from transaction 
