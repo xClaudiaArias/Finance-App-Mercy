@@ -2,13 +2,16 @@
 {% load static %}
 
 {% block title %}Login{% endblock %}
+{% block additionalStyles %}
+  <link rel="stylesheet" href="{%  static  'css/style.css'  %}"/>
+{% endblock %}
 
 {% block content %}
   <h1>Login</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Log In</button>
+    <button class="btn btn-success" id="loginbtn" type="submit">Log In</button>
     <p>Don't have an account? <a href="{% url 'dashboard:register' %}">register here</a></p> 
   </form>
 {% endblock %}

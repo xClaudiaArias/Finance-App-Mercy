@@ -43,13 +43,6 @@
 {% block content %} 
 
   {% if user.is_authenticated %} 
-  <p>This is the current user_name: {{c_id}}</p>
-  <p>{{pls_work}}, from profile</p>
-  <h6>{{income_name}} post 1</h6>
-  <p>{{deposit}} post 2</p>
-
-  <p>{{hello}}</p>
-
     <main id="main">
 
       <div id="in-bal">
@@ -63,29 +56,18 @@
           <h2>Income</h2>
           <button class="add-btn" id="add-income" type="submit">+</button>
 
-          <ul>
+          <div>
             {% for income, deposit in user_income reversed %}
-                <li>Income type: {{income}}</li>
-                <li>Deposit: {{deposit}}</li>
+                <div id="income-data">
+                  <h6 id="income-source">{{income}}</h6>
+                  <p id="income-money">{{deposit}}</p>
+                  <!-- <p id="income-date">{ 5 / 5 / 2022 } </p> -->
+                  <!-- <div id="income-btns">
+                    <div id="income-edit">{ edit }</div>
+                    <div id="income-trash">{ trash }</div>
+                  </div> -->
+                </div>
             {% endfor %}
-          </ul>
-          <ul>
-            {% for deposit in deposits reversed %}
-                <li>Deposit: {{deposit}}</li>
-            {% endfor %}
-          </ul>
-
-
-
-          <div id="income-data">
-            <h6 id="income-source"> post 1</h6>
-            <p id="income-money">{{deposit}} post 2</p>
-
-            <p id="income-date">{ 5 / 2 / 2022 } </p>
-            <div id="income-btns">
-              <div id="income-edit">{ edit }</div>
-              <div id="income-trash">{ trash }</div>
-            </div>
           </div>
         </section>
       </div>

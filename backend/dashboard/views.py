@@ -87,23 +87,26 @@ class IncomeProfile(View):
 
     def get(self, request):
         # self.context['current_name'] = request.user.username
-        user_name = request.user
+        user= request.user
         
-        user_name = request.user.first_name
-        c_id = request.user.id
-        
-        income_names = list(Income.objects.values_list('income_name', flat=True))[-3:]
-        deposits = list(Income.objects.values_list('deposit', flat=True))[-3:]
-        user_income = zip(income_names, deposits)
-        
-        self.context["c_id"] = c_id
-        self.context["user_name"] = user_name
-        self.context["income_names"] = income_names[-3:]
-        self.context["deposits"] = deposits[-3:]
-        self.context["pls_work"] = "LALSLSLLSLSLSLS"
-        self.context["user_income"] = user_income
-        
+        if user.is_authenticated:
+            user_name = request.user.first_name
+            c_id = request.user.id
+            
+            income_names = list(Income.objects.values_list('income_name', flat=True))[-3:]
+            deposits = list(Income.objects.values_list('deposit', flat=True))[-3:]
+            user_income = zip(income_names, deposits)
+            
+            self.context["c_id"] = c_id
+            self.context["user_name"] = user_name
+            self.context["income_names"] = income_names[-3:]
+            self.context["deposits"] = deposits[-3:]
+            self.context["pls_work"] = "LALSLSLLSLSLSLS"
+            self.context["user_income"] = user_income
+        else:
+            return redirect('/')
 
+        
         return render(request, self.template_name, self.context)
 
     
