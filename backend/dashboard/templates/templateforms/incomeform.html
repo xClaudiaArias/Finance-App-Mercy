@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+{% block additionalStyles %}
+  <link rel="stylesheet" href="{%  static  'css/style.css'  %}"/>
+{% endblock %}
+
+{% block modal %}
+
+{% endblock %}
+
+{% block content %} 
+  <h1>FROM Form</h1>
+  <div id="incomebtn">
+    {% block incomebtn %}
+      <h1>HIIII</h1>
+      <button class="add-btn" id="add-income" type="submit">+</button>
+    {% endblock %}
+  </div>  
+{% endblock %}

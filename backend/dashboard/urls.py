@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
+from dashboard.views import Profile
 
 app_name = "dashboard"
 
@@ -10,12 +11,8 @@ urlpatterns = [
     path('accounts/', views.loginForm, name="loginForm"),
     path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('register/', views.register, name="register"),
-    # path('accounts/profile/', TemplateView.as_view(template_name="dashboard/profile.html")),
-    path('accounts/profile/', views.profile, name="profile"),
-    # path('accounts/profile/', views.addIncomeForm, name="addIncomeForm")
-    # path("")
-    # path('test/', views.authUser, name="test")
-    # path("your-name/", views.printname, name="your-name"),
-    # path("form2/", views.getName, name="form2"),
-    # path("form3/", views.getUserForm, name="form3")
+    # path('accounts/profile/', views.profile, name="profile"), # this will display all later. 
+    path('accounts/profile/', views.Profile.as_view()), # this will display all later. 
+    # path('accounts/profile/income/', views.incomeForm, name="incomeForm"),
+    # path('accounts/profile', showIncome.as_view(), name="show income")
 ]

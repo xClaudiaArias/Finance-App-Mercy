@@ -1,31 +1,39 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 
+
+
+
 {% block title %}Profile{% endblock %}
 {% block additionalStyles %}
   <link rel="stylesheet" href="{%  static  'css/style.css'  %}"/>
 {% endblock %}
 
-{% block modal %}
-  <div class="modal" id="income-modal">
-    <div class="modal-container">
-      <h1>Add new income</h1>
-      <form method="post">
-        {% csrf_token %}
-        {{add_income_form.as_p}}
-        <!-- <input type="text" placeholder="work">
-        <input type="text" placeholder="pls"> -->
-        <button type="submit">Submit</button>
-      </form>
+<div class="modal-out" id="income-modal-out">
+  {% block modal %}
+    <div class="modal" id="income-modal">
+      <div class="modal-container">
+        <h1>Add new income</h1>
+        <form method="post">
+          {% csrf_token %}
+          {{add_income_form.as_p}}
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}
+</div>
+
+<p>{{pls_work}}, from profile</p>
 
 {% block content %} 
+
   {% if user.is_authenticated %} 
 
   <p>This is the current user_name: {{c_id}}</p>
-  <h1 id="test">TEST</h1>
+  <p>{{pls_work}}, from profile</p>
+
+
     <main id="main">
 
       <div id="in-bal">
@@ -37,6 +45,12 @@
         </section>
         <section id="income">
           <h2>Income</h2>
+          <!-- <div id="incomebtn">
+            {% block incomebtn %}
+              {{ block.super }}
+            {% endblock %}
+          </div> -->
+
           <button class="add-btn" id="add-income" type="submit">+</button>
           <!-- ------ MODAL ------ -->
           <!-- <div class="modal" id="income-modal">
@@ -51,8 +65,8 @@
           </div> -->
           <!-- ------------------- -->
           <div id="income-data">
-            <h6 id="income-source">{{income_name}}</h6>
-            <p id="income-money">{{deposit}}</p>
+            <h6 id="income-source">{{income_name}} post 1</h6>
+            <p id="income-money">{{deposit}} post 2</p>
 
             <p id="income-date">{ 5 / 2 / 2022 } </p>
             <div id="income-btns">
